@@ -6,9 +6,9 @@
 - 如果数据类型是复杂类型，ts不能自动推断出类型时，可以使用 类型断言。即 ( 如果你有一个复杂的类型 或 接口，则可以使用类型断言对其进行指明 )
 
 ## (1) 路由 v4.x
-- 安装
+#### 安装
   - npm install vue-router@4
-- 使用
+#### 使用
 ```
 // router
 const router = createRouter({
@@ -32,3 +32,5 @@ app.use(router)
   - 整个路由：我们就可以在任意组件中使用 this.$router 访问到该路由实例对象
   - 当前路由：以 this.$route 的形式访问当前路由的route对象
 ```
+#### setup函数中访问路由
+- 要在 setup 函数中访问路由，请调用 useRouter 或 useRoute 函数
