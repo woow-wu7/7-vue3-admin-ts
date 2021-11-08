@@ -88,3 +88,45 @@ app.use(router)
 #### setup 函数中访问路由
 
 - 要在 setup 函数中访问路由，请调用 useRouter 或 useRoute 函数
+
+# (二) vue2 复习
+
+## (2.1) Prop
+
+- 传入对象的所有属性
+
+```
+如果想传入一个对象的所有属性可以使用一个 ( 不带参数的 v-bind="obj" ) 传入对象的所有属性
+-------
+
+<TestPropsChild  :="{name: 'woow_wu7', age: 20}"/>
+等价于 <TestPropsChild  v-bind="{name: 'woow_wu7', age: 20}"/>
+等价于 <TestPropsChild  v-bind:name="woow_wu7" v-bind:age="20"/>
+详见 TestProps.vue 组件
+```
+
+- props 什么情况下传入的是 ( 引用 ) ?
+  - 当 props 是 ( 对象或数组 ) 时，传入子组件的是 ( 原数据的引用 )
+  - 也就是说：，在子组件中改变变更这个对象或数组本身将会影响到父组件的状态
+- props 的验证
+  - 用对象表示时
+    - type：表示类型
+    - required：表示必填
+    - default：表示默认值，推荐使用函数返回值的形式
+    - validator：自定义验证函数
+
+## (2.2) v-model 双向数据绑定
+
+- v-model 用在哪些元素标签中？
+  - input
+  - textarea
+  - select
+- model：是模型的意思
+- v-model 会忽略在标签中设置的初始值，而使用 data 中的值作为初始值
+- **修饰符**
+  - .lazy
+    - 表示在 change 事件后触发，而不是 input 事件时出发
+  - .number
+    - 自动将用户的输入值转为 ( 数值 ) 类型
+  - .trim
+    - 自动过滤用户输入的首尾空白字符
