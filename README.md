@@ -46,7 +46,7 @@
   - 与 ref 和 watch 类似
   - 也可以使用从 Vue 导入的 computed 函数在 Vue 组件外部创建计算属性
   - 语法
-    - computed((value) => value)
+    - computed(() => 对响应式value进行计算后，返回的值)
     - 参数: 是一个 getter 函数，返回值是一个 ( 只读的响应式引用 )
 - 最后
   - 将可以复用的逻辑单独抽离出来，形成 `自定义hook`，则可以在不同的组件中复用逻辑
