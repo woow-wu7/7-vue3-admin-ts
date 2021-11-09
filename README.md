@@ -1,13 +1,11 @@
 # 7-vue3-admin-ts
 
 # (一) Vue3 学习
-
 - defineComponent
   - 作用：用来让 Typescript 推断出 Vue 组件 config 中的类型
 - 如果数据类型是复杂类型，ts 不能自动推断出类型时，可以使用 类型断言。即 ( 如果你有一个复杂的类型 或 接口，则可以使用类型断言对其进行指明 )
 
 ## (1) 组合式 api - setup
-
 - 区分 ( 选项式 API ) 和 ( 组合式 API )
 - **组合式 api 出现的原因**
   - 1.在之前 ( 一个完整的业务逻辑 ) 或散落在 ( 不同的代码块 )，使得维护大型项目变得困难
@@ -54,11 +52,9 @@
 ## (2) 路由 v4.x
 
 #### 安装
-
 - npm install vue-router@4
 
 #### 使用
-
 ```
 // router
 const router = createRouter({
@@ -86,15 +82,12 @@ app.use(router)
 ```
 
 #### setup 函数中访问路由
-
 - 要在 setup 函数中访问路由，请调用 useRouter 或 useRoute 函数
 
-# (二) vue2 复习
+# (二) vue2复习
 
 ## (2.1) Prop
-
 - 传入对象的所有属性
-
 ```
 如果想传入一个对象的所有属性可以使用一个 ( 不带参数的 v-bind="obj" ) 传入对象的所有属性
 -------
@@ -104,11 +97,10 @@ app.use(router)
 等价于 <TestPropsChild  v-bind:name="woow_wu7" v-bind:age="20"/>
 详见 TestProps.vue 组件
 ```
-
-- props 什么情况下传入的是 ( 引用 ) ?
+- props什么情况下传入的是 ( 引用 ) ?
   - 当 props 是 ( 对象或数组 ) 时，传入子组件的是 ( 原数据的引用 )
   - 也就是说：，在子组件中改变变更这个对象或数组本身将会影响到父组件的状态
-- props 的验证
+- props的验证
   - 用对象表示时
     - type：表示类型
     - required：表示必填
@@ -116,13 +108,12 @@ app.use(router)
     - validator：自定义验证函数
 
 ## (2.2) v-model 双向数据绑定
-
 - v-model 用在哪些元素标签中？
   - input
   - textarea
   - select
 - model：是模型的意思
-- v-model 会忽略在标签中设置的初始值，而使用 data 中的值作为初始值
+- v-model会忽略在标签中设置的初始值，而使用data中的值作为初始值
 - **修饰符**
   - .lazy
     - 表示在 change 事件后触发，而不是 input 事件时出发
@@ -130,3 +121,30 @@ app.use(router)
     - 自动将用户的输入值转为 ( 数值 ) 类型
   - .trim
     - 自动过滤用户输入的首尾空白字符
+## (2.3) v-for
+-  <div v-for="(item, index) in arr" :key="index">
+-  <div v-for="(value, key, index) in obj" :key="key">
+## (2.3) v-if
+- template
+  - 场景：当v-if要隐藏多个元素时，可以使用 <template /> 标签包裹，将v-if作用域template标签
+  - 好处：template在DOM树中是不可见的，类似于react中的 `<></>` 标签
+  - 原因：因为 v-if 是一个指令，所以必须将它添加到一个元素上
+- **v-if 和 v-for 一起使用的情况**
+  - `不推荐 v-if 和 v-for 同时使用在一个元素标签上`
+  - `当 v-if 和 v-for 一起使用时，优先级 v-for > v-if`
+  - **如何优化**
+    - computed：如果是只渲染列表中的部分内容，可以先将数据进行 computed 中进行过滤
+    - v-if提升到父级：如果列表是根据条件显示隐藏，可以把 v-if 放到 v-for 的外层
+- for...in
+  - 1
+  - for...in 遍历 ( 自身属性 + 可枚举属性 + 继承的可枚举属性 )
+  - Object.keys() -> 自身属性 + 可枚举属性
+  - Object.getOwnPropertyNames() -> 遍历自身属性 + 可枚举属性 + 不可枚举属性
+  - 一般情况下我们都是希望遍历对象自身属性，所以一般配置 hasOwnProperty
+  - 2
+  - for...in
+    - 可以遍历 对象 和 数组
+    - 获取的是对象和数组的 key
+  - for...of
+    - 可以遍历数组，不能遍历对象，因为没有iterator接口
+    - 获取的是数组的 value

@@ -3,7 +3,8 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/testSetUp">testSetUp</router-link> |
     <router-link to="/testProps">testProps</router-link> |
-    <router-link to="/testVModel">testVModel</router-link>
+    <router-link to="/testVModel">testVModel</router-link> |
+    <router-link to="/testVif">testVif</router-link> |
   </div>
   <router-view />
 </template>
