@@ -124,7 +124,8 @@ app.use(router)
 ## (2.3) v-for
 - `<div v-for="(item, index) in arr" :key="index">`
 - `<div v-for="(value, key, index) in obj" :key="key">`
-## (2.3) v-if
+
+## (2.4) v-if
 - template
   - 场景：当v-if要隐藏多个元素时，可以使用 <template /> 标签包裹，将v-if作用域template标签
   - 好处：template在DOM树中是不可见的，类似于react中的 `<></>` 标签
@@ -149,7 +150,7 @@ app.use(router)
     - 可以遍历数组，不能遍历对象，因为没有iterator接口
     - 获取的是数组的 value
 
-## (2.4) 插槽
+## (2.5) 插槽
 - 作用域
   - 父级模板里的所有内容都是在父级作用域中编译的
   - 子模板里的所有内容都是在子作用域中编译的
