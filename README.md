@@ -122,8 +122,8 @@ app.use(router)
   - .trim
     - 自动过滤用户输入的首尾空白字符
 ## (2.3) v-for
--  <div v-for="(item, index) in arr" :key="index">
--  <div v-for="(value, key, index) in obj" :key="key">
+- `<div v-for="(item, index) in arr" :key="index">`
+- `<div v-for="(value, key, index) in obj" :key="key">`
 ## (2.3) v-if
 - template
   - 场景：当v-if要隐藏多个元素时，可以使用 <template /> 标签包裹，将v-if作用域template标签
