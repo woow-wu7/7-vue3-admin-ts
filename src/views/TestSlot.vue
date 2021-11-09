@@ -12,8 +12,9 @@
       <template v-slot:footer>
         <p>这是父传入子的：footer-slot的内容</p>
       </template>
-      <template #abbreviation>
+      <template #abbreviation="{ age2 }">
         <p>v-slot的简写形式：#</p>
+        <p>测试作用域插槽在v-slot简写形式下是否生效：{{ age2 }}</p>
       </template>
     </test-slot-child>
   </div>
