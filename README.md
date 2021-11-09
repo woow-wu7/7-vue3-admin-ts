@@ -148,3 +148,26 @@ app.use(router)
   - for...of
     - 可以遍历数组，不能遍历对象，因为没有iterator接口
     - 获取的是数组的 value
+
+## (2.4) 插槽
+- 作用域
+  - 父级模板里的所有内容都是在父级作用域中编译的
+  - 子模板里的所有内容都是在子作用域中编译的
+- 后备内容
+  - `<slot>后备内容</slot>`将在不提供任何插槽内容时，进行渲染；提供插槽内容时将渲染提供的内容
+- 具名插槽
+  - (template, v-slot, slot的name属性)
+  - 存在多个插槽时，使用具名插槽进行区分
+  - 插槽的内容：使用 `<template v-slot:header >content</template>` 来区分
+  - 插槽：使用 `<slot name="header"></slot>`
+  - 注意：**v-slot 只能添加在 `<template>` 上**
+- 作用域插槽
+  - 需求：让 ( 插槽内容 ) 能够访问 ( 子组件中才有的数据 )
+  - 实现：
+    - `<slot v-bind:user="user">`
+      - `<slot></slot>`标签除了 ( name属性 ), 还可以传入任意自定义属性
+    - `<template v-slot:default="slotProps">` 等价于 `<template v-slot:default="{user}">`
+- 具名插槽的缩写
+  - `v-slot -> #`
+  - `v-on -> @`
+  - `v-bind -> :`

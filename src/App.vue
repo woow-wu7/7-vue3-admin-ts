@@ -5,6 +5,7 @@
     <router-link to="/testProps">testProps</router-link> |
     <router-link to="/testVModel">testVModel</router-link> |
     <router-link to="/testVif">testVif</router-link> |
+    <router-link to="/testSlot">testSlot</router-link> |
   </div>
   <router-view />
 </template>
