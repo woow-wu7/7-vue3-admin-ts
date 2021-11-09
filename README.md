@@ -167,7 +167,9 @@ app.use(router)
   - 实现：
     - `<slot v-bind:user="user">`
       - `<slot></slot>`标签除了 ( name属性 ), 还可以传入任意自定义属性
-    - `<template v-slot:default="slotProps">` 等价于 `<template v-slot:default="{user}">`
+    - `<template v-slot:default="slotProps">`
+      - 等价于 `<template v-slot:default="{user}">`
+      - 等价于 `<template #default="{user}">`
 - 具名插槽的缩写
   - `v-slot -> #`
   - `v-on -> @`
