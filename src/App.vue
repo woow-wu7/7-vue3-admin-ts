@@ -6,6 +6,8 @@
     <router-link to="/testVModel">testVModel</router-link> |
     <router-link to="/testVif">testVif</router-link> |
     <router-link to="/testSlot">testSlot</router-link> |
+    <router-link to="/testMixin">testMixin</router-link> |
+    <router-link to="/testHookOrder">testHookOrder</router-link> |
   </div>
   <router-view />
 </template>

@@ -18,9 +18,8 @@
 
   <!-- v-for 遍历对象 -->
   <div v-for="(value, key, index) in messageObj" :key="key">
-    <span>value: {{ value }}</span> ;
-    <span>key:{{ key }}</span> ;
-    <span>index: {{index}}</span>
+    <span>value: {{ value }}</span> ; <span>key:{{ key }}</span> ;
+    <span>index: {{ index }}</span>
   </div>
 </template>
 
