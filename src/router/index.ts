@@ -66,6 +66,14 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "testWatch" */ "../views/TestWatch.vue"
       ),
   },
+  {
+    path: "/testDirective",
+    name: "testDirective",
+    component: () =>
+      import(
+        /* webpackChunkName: "testDirective" */ "../views/TestDirective.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

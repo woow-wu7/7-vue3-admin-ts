@@ -9,6 +9,7 @@
     <router-link to="/testMixin">testMixin</router-link> |
     <router-link to="/testHookOrder">testHookOrder</router-link> |
     <router-link to="/testWatch">testWatch</router-link> |
+    <router-link to="/testDirective">testDirective</router-link> |
   </div>
   <router-view />
 </template>

@@ -84,6 +84,53 @@ app.use(router)
 #### setup 函数中访问路由
 - 要在 setup 函数中访问路由，请调用 useRouter 或 useRoute 函数
 
+
+
+## (3) 自定义指令
+- vue3中优化了指令中的钩子名称，和组件的生命周期保持一致，比vue2做的更好了
+- 分为：全局指令 和 局部指令
+```
+1. 全局指令
+const app = Vue.createApp({})
+app.directive('focus', {
+  mounted(el) {}
+})
+
+2. 局部指令
+directives: {
+  focus: {
+    mounted(el) {}
+  }
+}
+
+3. 指令中的钩子函数
+- created
+- beforeMount
+- mounted
+  - mounted 表示在 ( 被绑元素的父元素 ) 被 ( 挂载后 ) 调用
+  - 注意：
+    - 因为：mounted生命周期钩子是 子组件的mounted()执行后，父组件的mounted()才会执行
+    - 所以：这里父组件挂载完时，子组件即绑定指定的组件肯定也挂在完成了
+- beforeUpdate
+- updated
+- beforeUnmount
+- unmounted
+
+4. 钩子函数的参数
+- el
+  - 指令所绑定的元素，可以用来直接操作 DOM
+bind
+  - 一个对象，包含以下属性
+    - name：指令名，不包括 v- 前缀
+    - value：指令的绑定值
+    - oldValue：指令绑定的前一个值
+    - expression：字符串形式的指令表达式
+    - arg：传给指令的参数，可选
+    - modifiers：一个包含修饰符的对象
+    - vnode：Vue 编译生成的虚拟节点
+    - oldVnode：上一个虚拟节点
+```
+
 # (二) vue2复习
 
 ## (2.1) Prop
