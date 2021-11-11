@@ -150,6 +150,8 @@ app.use(router)
     - 可以遍历数组，不能遍历对象，因为没有iterator接口
     - 获取的是数组的 value
 
+
+
 ## (2.5) 插槽
 - 作用域
   - 父级模板里的所有内容都是在父级作用域中编译的
@@ -175,6 +177,8 @@ app.use(router)
   - `v-on -> @`
   - `v-bind -> :`
 
+
+
 ## (2.6) mixin - 2.0版本
 - 作用：复用一些功能，包含生命周期钩子，data，computed，methods等
 - 一个 ( 混入对象 ) 包含任意 ( 组件选项 )
@@ -186,6 +190,7 @@ app.use(router)
     - 比如： methods、components 和 directives
     - 将被合并为同一个对象，两个对象键名冲突时，取 ( `组件对象的键值对` )
 - 可以使用 `全局混入` -> `全局将影响每一个之后创建的 Vue 实例`
+
 
 ## (2.7) watch
 - watch对象key对应的类型
