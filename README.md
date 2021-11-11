@@ -186,3 +186,41 @@ app.use(router)
     - 比如： methods、components 和 directives
     - 将被合并为同一个对象，两个对象键名冲突时，取 ( `组件对象的键值对` )
 - 可以使用 `全局混入` -> `全局将影响每一个之后创建的 Vue 实例`
+
+## (2.7) watch
+- watch对象key对应的类型
+  - function
+  - string - 函数名'functionA'，或者对象的属性'a.b'
+  - object - `handler deep immediate sync`
+  - array
+  - 最终都会把不同类型的 handler 转换成函数
+- 注意点
+  - `watcher函数不能是 ( 箭头函数 )`
+- watch对象中的key对应的options对象支持的属性
+  - **deep**
+    - 作用：深度监听
+    - 比如：
+      - 一个data中的一个属性是一个对象时，如果你修改对象中的某个属性，watch对应函数是不会执行的，除非你使用了deep属性，这样该对象中的每个属性的变动都会触发该watch函数
+      ```
+        data() {
+          return {
+            obj: { name: "woow.wu7" },
+          };
+        }
+        -------
+        watch: {
+          obj: {
+            handler: function (newValue, oldValue) {...}
+          }
+        }
+        -------
+        出现问题：上面当修改 obj.name 的值时，handler函数是不会执行的
+        如何解决：deep 属性
+        具体代码：watch: { obj: { handler: function(){}, deep: true }}
+      ```
+  - **immediate**
+    - 作用：
+      - 回调将会在侦听开始之后被立即调用
+      - 立即执行cb，即watch对象中的 handler 函数，无需等到依赖变化才去执行
+  - **sync**
+    - 作用：保证 ( 同步watch对象的handler ) 在 ( 普通的watch对象的handler ) 前面执行

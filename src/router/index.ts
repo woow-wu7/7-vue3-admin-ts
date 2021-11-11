@@ -58,6 +58,14 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "testHookOrder" */ "../views/TestHookOrder.vue"
       ),
   },
+  {
+    path: "/testWatch",
+    name: "testWatch",
+    component: () =>
+      import(
+        /* webpackChunkName: "testWatch" */ "../views/TestWatch.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

@@ -8,6 +8,7 @@
     <router-link to="/testSlot">testSlot</router-link> |
     <router-link to="/testMixin">testMixin</router-link> |
     <router-link to="/testHookOrder">testHookOrder</router-link> |
+    <router-link to="/testWatch">testWatch</router-link> |
   </div>
   <router-view />
 </template>
