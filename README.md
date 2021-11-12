@@ -127,8 +127,8 @@ bind
     - expression：字符串形式的指令表达式
     - arg：传给指令的参数，可选
     - modifiers：一个包含修饰符的对象
-    - vnode：Vue 编译生成的虚拟节点
-    - oldVnode：上一个虚拟节点
+- vnode：Vue 编译生成的虚拟节点
+- oldVnode：上一个虚拟节点
 ```
 
 # (二) vue2复习

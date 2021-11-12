@@ -74,6 +74,14 @@ const routes: Array<RouteRecordRaw> = [
         /* webpackChunkName: "testDirective" */ "../views/TestDirective.vue"
       ),
   },
+  {
+    path: "/testMethodsKey",
+    name: "testMethodsKey",
+    component: () =>
+      import(
+        /* webpackChunkName: "testMethodsKey" */ "../views/TestMethodsKey.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

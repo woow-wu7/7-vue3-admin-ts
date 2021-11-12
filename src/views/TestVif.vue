@@ -57,10 +57,11 @@ export default {
     };
   },
   methods: {
-    toggle(): void {
-      this.isShow = !this.isShow;
+    toggle() {
+      // const _isShow = this.isShow;
+      // this.isShow = !_isShow;
     },
-  },
+  }
 };
 </script>
 
