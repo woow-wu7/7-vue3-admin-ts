@@ -62,9 +62,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/testWatch",
     name: "testWatch",
     component: () =>
-      import(
-        /* webpackChunkName: "testWatch" */ "../views/TestWatch.vue"
-      ),
+      import(/* webpackChunkName: "testWatch" */ "../views/TestWatch.vue"),
   },
   {
     path: "/testDirective",
@@ -81,6 +79,22 @@ const routes: Array<RouteRecordRaw> = [
       import(
         /* webpackChunkName: "testMethodsKey" */ "../views/TestMethodsKey.vue"
       ),
+  },
+  {
+    path: "/testVueRouter3",
+    name: "testVueRouter3",
+    component: () =>
+      import(
+        /* webpackChunkName: "testVueRouter3" */ "../views/TestVueRouter3.vue"
+      ),
+    children: [
+      {
+        path: "detail/:id",
+        component: import(
+          /* webpackChunkName: "testVueRouter3Detail" */ "../components/TestVueRouter3Detail.vue"
+        ),
+      },
+    ],
   },
 ];
 

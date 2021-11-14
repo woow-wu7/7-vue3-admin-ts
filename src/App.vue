@@ -11,6 +11,7 @@
     <router-link to="/testWatch">testWatch</router-link> |
     <router-link to="/testDirective">testDirective</router-link> |
     <router-link to="/testMethodsKey">testMethodsKey</router-link> |
+    <router-link to="/testVueRouter3">testVueRouter3</router-link> |
   </div>
   <router-view />
 </template>

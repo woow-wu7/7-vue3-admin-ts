@@ -276,3 +276,10 @@ bind
       - 立即执行cb，即watch对象中的 handler 函数，无需等到依赖变化才去执行
   - **sync**
     - 作用：保证 ( 同步watch对象的handler ) 在 ( 普通的watch对象的handler ) 前面执行
+
+# (三) vue-router3
+
+## (1) 动态路由匹配
+- 动态路径参数 dynamic segment
+  - 动态路径参数以 `:` 开头
+  - `{ path: '/user/:id', component: User }`
