@@ -16,10 +16,10 @@ const HomeModule = {
     }
   },
   mutations: {
-    setMessage(state: any, data: any) {
-      console.log(`77777`, data)
-      state.name = data.name;
-      state.password = data.password;
+    setMessage(state: any, payload: any) {
+      console.log(`77777`, payload)
+      state.name = payload.name;
+      state.password = payload.password;
     },
   },
   actions: {

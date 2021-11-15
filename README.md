@@ -347,11 +347,17 @@ bind
 
 ### (1) 一些概念
 - state
+  - `属性参数是 state`
 - getters
+  - `属性的参数是 state getters`
   - 类似于组件中的计算属性computed
   - 具有computed的特征：1.返回值会被缓存，只有值发生变化时候才会重新计算 2.并且只有在被使用到时才会发生计算的过程
 - mutations
+  - `属性参数是 state payload`
+  - 必须是同步函数，异步操作放在actions中
 - actions
+  - `属性参数是 context params`
+  - 可以实现异步操作
 - modules
 
 ### (1) mapState
@@ -366,7 +372,7 @@ bind
 ### (2) mapGetters
 - 属性的参数
   - 第一个参数：是作用域范围内的state
-  - 第二个参数：getters属性
+  - 第二个参数：getters属性，表示getters其实使用其他的getter
 ```
 getters: {
   // ...
@@ -374,5 +380,15 @@ getters: {
     return getters.doneTodos.length
   }
 }
+```
 
+### (3) mapMutations
+```
+actions
+-------
+
+actions: {
+  checkout ({ commit, state }, products) {
+  }
+}
 ```
