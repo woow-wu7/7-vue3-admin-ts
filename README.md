@@ -344,3 +344,35 @@ bind
 - commit mutation
 - computed -> mapState -> vuex通过computed实现的响应式
 - methods -> mapActions
+
+### (1) 一些概念
+- state
+- getters
+  - 类似于组件中的计算属性computed
+  - 具有computed的特征：1.返回值会被缓存，只有值发生变化时候才会重新计算 2.并且只有在被使用到时才会发生计算的过程
+- mutations
+- actions
+- modules
+
+### (1) mapState
+- 参数类型
+  - 对象
+    - 箭头函数
+    - 字符串
+    - 普通函数，是普通函数时，可以获取到当前组件实例 this
+  - 数组
+    - 当映射的 ( 计算属性名称 ) 和 ( state的子节点名称 ) 相同时，可以使用数组，成员是state属性名称字符串
+
+### (2) mapGetters
+- 属性的参数
+  - 第一个参数：是作用域范围内的state
+  - 第二个参数：getters属性
+```
+getters: {
+  // ...
+  doneTodosCount: (state, getters) => {
+    return getters.doneTodos.length
+  }
+}
+
+```

@@ -4,7 +4,16 @@ const HomeModule = {
     return {
       name: "woow_WU6",
       password: "admin",
+      time: +new Date()
     };
+  },
+  getters: {
+    getTime(state: any) {
+      return state.time
+    },
+    getUserMessage(state: any, getters: any) {
+      return state.name + ';' + state.password + getters.getTime
+    }
   },
   mutations: {
     setMessage(state: any, data: any) {
