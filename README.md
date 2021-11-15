@@ -343,6 +343,7 @@ bind
 - dispatch action -> 可以异步操作
 - commit mutation
 - computed -> mapState -> vuex通过computed实现的响应式
+- computed -> mapGetters -> vuex中的getters类似vue组件中的computed
 - methods -> mapActions
 
 ### (1) 一些概念
