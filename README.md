@@ -290,3 +290,50 @@ bind
 - 复用组件时，如何对路径参数做出响应？
   - 1. 使用 watch: { $route(to, from){} }
   - 2. beforeRouteUpdate 生命周期
+
+## (2) 编程式路由
+- name -> params
+- path -> query
+- 命名的路由 `router.push({ name: 'user', params: { userId: '123' }})`
+- 带查询参数，变成 /register?plan=private `router.push({ path: 'register', query: { plan: 'private' }})`
+- `router.push({ path: `/user/${userId}` })`
+
+## (3) 重定向
+- redirect
+  - string
+  - object -> redirect: {name: 'xxxx'}
+  - function -> redirect: to => {...}
+
+## (4) 别名
+- /a 的别名是 /b，意味着，当用户访问 /b 时，URL 会保持为 /b，但是路由匹配则为 /a，就像用户访问 /a 一样
+
+## (5) 路由传参
+- **$route的缺陷**
+  - 问题：在组件中使用 $route 会使之与其对应路由形成高度耦合，从而使组件只能在某些特定的 URL 上使用，限制了其灵活性
+  - 解决：使用props解耦路由，这个属性很有用
+  - 详见：TestVueRouter3Detail 组件
+- props有三种模式
+  - boolean
+  - object
+  - function --->   props: route => ({ query: route.query.q })
+
+## (6) 导航守卫
+- 参数或查询的改变并不会触发进入/离开的导航守卫
+- 全局路由守卫
+  - **router.beforeEach**
+  - **router.afterEach**
+  - **router.beforeResolve**
+- 路由独享的守卫
+  - **beforeEnter**
+- 组件内的守卫
+  - **beforeRouteEnter**
+    -> 在渲染该组件的对应路由被 confirm 前调用,不！能！获取组件实例 `this`，因为当守卫执行前，组件实例还没被创建
+    -> this：不能访问this
+    -> 可以传入 next 回调，因为在回调中获取this
+  - **beforeRouteUpdate**
+    -> 一个带有动态参数的路径 /foo/:id，在 /foo/1 和 /foo/2 之间跳转的时候被调用
+    -> 可以访问this
+    -> 因为有了this，所以next不支持回调方式
+  - **beforeRouteLeave**
+    -> 导航离开该组件的对应路由时调用
+    -> 可以访问 this

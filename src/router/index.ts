@@ -89,18 +89,52 @@ const routes: Array<RouteRecordRaw> = [
       ),
     children: [
       {
+        path: '',
+        component: import(
+          /* webpackChunkName: "default" */ "../components/Default.vue"
+        ),
+      },
+      {
+        // 如果嵌套路由中的path是以 '/' 开头的话，表示从根路径开始
         path: "detail/:id",
+        props: true,
+        // props: route => ({
+        //   query: route.query.id
+        // }),
         component: import(
           /* webpackChunkName: "testVueRouter3Detail" */ "../components/TestVueRouter3Detail.vue"
         ),
       },
+      {
+        path: "detail/other",
+        name: 'testVueRouter3DetailOther',
+        // redirect: '/testDirective',
+        component: import(
+          /* webpackChunkName: "testVueRouter3Detail" */ "../components/TestVueRouter3DetailOther.vue"
+        ),
+      }
     ],
   },
+  // {
+  //   path: "*",
+  //   component: () =>
+  //   import(
+  //     /* webpackChunkName: "404" */ "../views/404.vue"
+  //   ),
+  // }
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
 });
+
+// 全局前置守卫
+// router.beforeEach((to, from, next) => {
+//   console.log('全局路由守卫')
+//   console.log(`to`, to)
+//   console.log(`from`, from)
+//   console.log(`next`, next)
+// })
 
 export default router;
