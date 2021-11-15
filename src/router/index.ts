@@ -122,6 +122,14 @@ const routes: Array<RouteRecordRaw> = [
   //     /* webpackChunkName: "404" */ "../views/404.vue"
   //   ),
   // }
+  {
+    path: "/testVuex",
+    name: "testVuex",
+    component: () =>
+      import(
+        /* webpackChunkName: "testVuex" */ "../views/TestVuex.vue"
+      ),
+  },
 ];
 
 const router = createRouter({

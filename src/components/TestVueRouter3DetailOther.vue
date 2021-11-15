@@ -12,6 +12,7 @@ export default {
   },
   mounted() {
     console.log(`this.$route.params`, this.$route?.params.age);
+		console.log(`this.$route.match`, this.$route.match)
   },
   computed: {
     age() {

@@ -337,3 +337,10 @@ bind
   - **beforeRouteLeave**
     -> 导航离开该组件的对应路由时调用
     -> 可以访问 this
+
+
+# (四) vuex
+- dispatch action -> 可以异步操作
+- commit mutation
+- computed -> mapState -> vuex通过computed实现的响应式
+- methods -> mapActions
