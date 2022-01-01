@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { onMounted, ref, toRefs, watch } from "vue";
+import { onMounted, ref, toRefs, watch, computed, onUpdated } from "vue";
 
 export default {
   props: {
@@ -32,6 +32,9 @@ export default {
 
     const { articlesLength: articlesLengthRef } = toRefs(props); // 获取组件中的props中的articlesLength属性的引用
     const articlesRef = ref([]); // 新建一个响应式数据
+    const articlesLengthToString = computed(() =>
+      articlesLengthRef.value.toString()
+    );
 
     // console.log(`articlesLength`, articlesLength.value);
 
@@ -67,6 +70,11 @@ export default {
 
     onMounted(getArticles); // 注意和mounted的使用上的不同，这里是参数的形式传入
 
+    onUpdated(() => {
+      console.log(`number -> `, typeof articlesLengthRef.value);
+      console.log(`string -> `, typeof articlesLengthToString.value);
+    });
+
     watch(articlesLengthRef, getArticles);
 
     watch(articlesRef, (newValue, oldValue) => {
@@ -78,6 +86,7 @@ export default {
     return {
       articlesRef, // 为什么 ref 对象在模版中使用时，不需要 ref.value，而是自动解绑了，行为不统一？？？
       getArticles,
+      articlesLengthToString,
     };
   },
   // 问题：当组件中的 mounted 中调用的却是 setUp 中的函数，如何解耦？
