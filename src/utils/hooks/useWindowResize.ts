@@ -1,7 +1,12 @@
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, Ref } from "vue";
 import { useThrottleFn } from "./useThrottleFn";
 
-export const useWindowResize = () => {
+type UseWindowResize = () => {
+  width: Ref;
+  height: Ref;
+};
+
+export const useWindowResize: UseWindowResize = () => {
   const width = ref(NaN);
   const height = ref(NaN);
 

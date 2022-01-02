@@ -5,8 +5,8 @@
   </section>
 </template>
 
-<script>
-import { useWindowResize } from "@/utils/hooks";
+<script lang="ts">
+import { useWindowResize } from "@/utils/hooks/index";
 
 export default {
   setup() {

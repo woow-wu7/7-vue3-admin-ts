@@ -12,7 +12,10 @@
 //   };
 // }
 
-export const useThrottleFn = (fn, wait) => {
+type Fn<Args extends any[] = any[], Return = void> = (...args: Args) => Return;
+type P = () => void;
+
+export const useThrottleFn = <T extends Fn>(fn: T, wait: number): P => {
   let previous = 0;
 
   return () => {
