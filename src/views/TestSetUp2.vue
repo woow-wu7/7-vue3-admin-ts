@@ -27,11 +27,24 @@
 
     <!-- TestExpose -->
     <section style="background: #f2eada">
-      <h1>expose，reactive</h1>
+      <h1>
+        expose，setUp, reactive, ref, toRef, toRaw, watchEffect, readonly,
+        isProxy, isReactive
+      </h1>
       <h5>
-        通过expose获取到的来自子组件中的add函数执行的结果：{{ resultFromChildExpose }}
+        通过expose获取到的来自子组件中的add函数执行的结果 -
+        就是在父组件中执行了子组件中的add方法：{{ resultFromChildExpose }}
+        <button @click="runAdd">点击，执行add</button>
       </h5>
-      <TestExpose ref="testExposeRef" />
+      <!-- <TestExpose ref="testExposeRef" :toChildCount.sync="toChildCount" > 注意：vue3中.sync修饰符改为了 v-model -->
+      <TestExpose ref="testExposeRef" v-model:toChildCount="toChildCount">
+        <template v-slot:header>slot-content</template>
+      </TestExpose>
+    </section>
+
+    <!-- setUp + ts 最佳实践 -->
+    <section style="background: #90d7ec">
+      <BestPractices />
     </section>
   </div>
 </template>
@@ -41,6 +54,7 @@ import TestSetUpChild2 from "@/components/TestSetUpChild2.vue";
 import TestUseWindowResize from "@/components/hooks/TestUseWindowResize.vue";
 import TestUseEventListener from "@/components/hooks/TestUseEventListener.vue";
 import TestExpose from "@/components/hooks/TestExpose.vue";
+import BestPractices from "@/components/hooks/BestPractices.vue";
 
 export default {
   name: "Test-setUp2",
@@ -49,20 +63,24 @@ export default {
     TestUseWindowResize,
     TestUseEventListener,
     TestExpose,
+    BestPractices,
   },
   data() {
     return {
-      articlesLength: 2,
+      articlesLength: 1,
       showTestUseWindowResize: true,
-      resultFromChildExpose: null,
+      resultFromChildExpose: 0,
+      toChildCount: 111,
     };
   },
-  mounted() {
-    console.log(
-      `this.testExposeRef.testExposeRef.add()---->`,
-      this.$refs.testExposeRef.add()
-    );
-    this.resultFromChildExpose = this.$refs.testExposeRef.add();
+  methods: {
+    runAdd() {
+      // console.log(
+      //   `this.testExposeRef.testExposeRef.add()---->`,
+      //   this.$refs.testExposeRef.add()
+      // );
+      this.resultFromChildExpose = this.$refs.testExposeRef.add();
+    },
   },
 };
 </script>

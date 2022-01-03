@@ -1,13 +1,32 @@
 <template>
-  <div>reactive中的name，解构后要达到响应式需要用toRefs包装: {{ name }}</div>
-  <button @click="changeReactiveUserName">改变reactive</button>
+  <slot name="header"></slot>
+
+  <section>
+    <div>reactive中的name，解构后要达到响应式需要用toRefs包装: {{ name }}</div>
+    <button @click="changeReactiveUserName">改变reactive</button>
+  </section>
+
+  <section>
+    <div>
+      父传子，测试setup中的context的emit属性 (注意 .sync 改为 v-model) ->
+      {{ toChildCount }}
+    </div>
+    <button @click="emitFnChangeFatherCount">emit</button>
+  </section>
 </template>
 
 <script>
+// A
 // script 的 setup 属性
 // - 这里如果是 <script setup> 时，就不需要再写 setUp 钩子函数了
 // - 因为：setUp 比 beforeCreate 和 created 两个声明周期都早，此时 computed，methods，watch等还没有初始化，vue实例也没挂载，所以不能使用this
 // - 所以：setUp钩子中不能使用this，
+
+// B
+// 生命周期
+// 在 setUp 中加 to
+// - 将 beforeDestroy 和 destroyed
+// - 改成了 beforeUnmount 和 unMounted
 import {
   // h,
   ref,
@@ -19,12 +38,33 @@ import {
   isReadonly,
   isProxy,
   toRaw,
+  defineComponent,
 } from "vue";
 
-export default {
-  setup(props, { expose }) {
+export default defineComponent({
+  props: {
+    toChildCount: {
+      type: Number,
+    },
+  },
+  setup(props, context) {
+    const { toChildCount } = toRefs(props); // setup中的props要获取到，必须要在上面先通过props属性获取到props
     const count = ref(0);
     const add = () => count.value++;
+
+    console.log(`%c toChildCount`, "background: red;", toChildCount.value); // 转成ref对象后，需要通过 ref.value 获取props中的某个属性
+    console.log(`%c context`, "color: red;", context);
+    console.log(`%c context.slots`, "color: green;", context.slots);
+
+    // context.emit();
+    const emitFnChangeFatherCount = () => {
+      context.emit("update:toChildCount", 222);
+    };
+
+    // 0
+    // context 对象中具有哪些属性？
+    // - attrs slots emit expose 等等
+    // - 因为不能通过this获取，所以提供了 context 来获取
 
     // 1
     // reactive
@@ -81,7 +121,7 @@ export default {
     // expose
     // expose 暴露给父组件，父组件通过ref访问
     // 无论setUp是返回渲染函数，还是一个对象，都可以通过 expose 暴露给父组件，父组件通过 ref 获取
-    expose({
+    context.expose({
       add,
     });
 
@@ -91,9 +131,10 @@ export default {
       // user,
       ...toRefs(user), // 这样可以直接解构user这个响应式数据，解构后要任然具有响应式的话，需要用toRefs做包装
       changeReactiveUserName,
+      emitFnChangeFatherCount,
     };
   },
-};
+});
 </script>
 
 <style>

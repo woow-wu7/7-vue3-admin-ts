@@ -12,6 +12,9 @@
 - defineComponent
   - 作用：用来让 Typescript 推断出 Vue 组件 config 中的类型
 - 如果数据类型是复杂类型，ts 不能自动推断出类型时，可以使用 类型断言。即 ( 如果你有一个复杂的类型 或 接口，则可以使用类型断言对其进行指明 )
+- .sync
+  - vue3 使用 `v-modal:title=""` 代替 `:title.sync=""`
+  - `emit` 在 setup 中通过 context 来获取
 
 ## (1) 组合式 api - setup
 
@@ -53,7 +56,9 @@
 - **`toRefs()`**
   - 响应式引用，可以获取 setUp 参数中的 promise 中的属性的引用，返回值是将属性包装成了 ref 对象，获取真正的 props 中属性的值，需要进行 ref.value 操作
   - watch 时传入的是 `响应式引用 - 即ref()或者toRefs()的返回值，对象的引用`
-  - **技巧**：在解构时命名可以 `const { articlesLength: articlesLengthRef } = toRefs(props)` 这样，避免和真正的 props 中的属性类型搞混，比如这里 articlesLength 是 number 类型，而 toRefs 返回的是对象类型，两个类型不一致
+  - **技巧**：
+    - 在解构时命名可以 `const { articlesLength: articlesLengthRef } = toRefs(props)` 这样，避免和真正的 props 中的属性类型搞混，比如这里 articlesLength 是 number 类型，而 toRefs 返回的是对象类型，两个类型不一致
+    - 这样才能是具有`响应式`的
 - **computed() -> 独立的 computed 属性**
   - 与 ref 和 watch 类似
   - 也可以使用从 Vue 导入的 computed 函数在 Vue 组件外部创建计算属性
