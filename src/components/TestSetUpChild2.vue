@@ -2,8 +2,10 @@
   <div style="background: yellow">
     <header>Test-setUp-child</header>
     <content>
-      <div v-for="{ name, content } in articlesRef" :key="name">
-        <h1>{{ name }}</h1>
+      <h5>文章长度：{{ articlesLengthToString }}</h5>
+
+      <div v-for="{ title, content } in articlesRef" :key="title">
+        <h5>{{ title }}</h5>
         <h5>{{ content }}</h5>
       </div>
     </content>
