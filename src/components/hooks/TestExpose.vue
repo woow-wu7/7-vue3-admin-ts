@@ -1,12 +1,17 @@
 <template>
-  <div>reactive:{{ user.name }}</div>
+  <div>reactive中的name，解构后要达到响应式需要用toRefs包装: {{ name }}</div>
   <button @click="changeReactiveUserName">改变reactive</button>
 </template>
 
 <script>
+// script 的 setup 属性
+// - 这里如果是 <script setup> 时，就不需要再写 setUp 钩子函数了
+// - 因为：setUp 比 beforeCreate 和 created 两个声明周期都早，此时 computed，methods，watch等还没有初始化，vue实例也没挂载，所以不能使用this
+// - 所以：setUp钩子中不能使用this，
 import {
-  h,
+  // h,
   ref,
+  toRefs,
   reactive,
   isReactive,
   watchEffect,
@@ -25,6 +30,8 @@ export default {
     // reactive
     // - 参数必须是对象或者数组，如果要让对象的某个元素实现响应式时比较麻烦。需要使用toRefs
     // - isReactive 表示 检查对象是否是由 reactive 创建的响应式代理
+    // 问题：ref 和 reactive 的区别
+    // 回答：ref一般用于单个属性或者对象属性都可以，而reactive只能是个对象或数组
     const user = reactive({
       name: "woow_wu7",
       age: 20,
@@ -78,9 +85,11 @@ export default {
       add,
     });
 
-    // 返回一个渲染函数将阻止我们返回任何其它的东西
+    // 函数：返回一个渲染函数将阻止我们返回任何其它的东西
+    // 对象：对象可用于任何其他配置对象
     return {
-      user,
+      // user,
+      ...toRefs(user), // 这样可以直接解构user这个响应式数据，解构后要任然具有响应式的话，需要用toRefs做包装
       changeReactiveUserName,
     };
   },
