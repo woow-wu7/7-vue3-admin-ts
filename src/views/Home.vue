@@ -48,6 +48,14 @@ export default defineComponent({
     // 2
     console.log(`this.$router`, this.$router); // router
     console.log(`this.$route`, this.$route); // route
+
+    // 3
+    // 问题：获取组件名的方式有哪些？
+    // - 1. vnode.componentOptions.Ctor.options.name
+    // - 2. vnode.componentOptions.tag
+    // - 3. 在组件中，通过 this.$options.name
+    // - 区别：componentOptions.tag 为模版或者render书写的标签字符串时，根据用户的书写可能不统一
+    console.log("this.$options.name", this.$options.name);
   },
 });
 </script>
